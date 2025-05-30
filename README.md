@@ -1,10 +1,14 @@
 # EMGLLM: Data-to-Text Alignment for Electromyogram Diagnosis Generation with Medical Numerical Data Encoding
 
+<img src="/figure/framework.jpg" alt="EMGLLM Framework" style="width:20%;" align="left" />
+
 Electromyography (EMG) tables play a crucial role in diagnosing muscle and nerve disorders. However, the complex, continuous numerical data in EMG reports pose significant challenges for current Large Language Models (LLMs), which struggle to interpret such structured medical information effectively.
 
 **EMGLLM is a specialized data-to-text model designed to bridge this gap.** It introduces an EMG Alignment Encoder, which simulates how medical professionals compare patient test values with reference ranges, aligning the data into embeddings that reflect a patient's health status more accurately.
 
 To support research and development in this area, we also introduce ETM, a large-scale dataset containing 17,250 real-world EMG cases paired with diagnostic reports. Our experiments show that EMGLLM significantly outperforms baseline models on EMG table interpretation and diagnostic text generation, offering a new paradigm for automatic diagnosis from structured medical data.
+
+<br clear="left"/>
 
 ## ETM Dataset
 
@@ -13,6 +17,7 @@ ETM-17k: https://huggingface.co/datasets/fangbingzi/ETM-17k
 For the training of language models, you can use ETM-17k-LLM version: https://huggingface.co/datasets/fangbingzi/ETM-17k-LLM
 
 <img src="/figure/data_example.jpg" alt="An EMG diagnostic report example in ETM" style="width:50%;" />
+
 
 
 ETM (Electromyogram Table Mart) is a high quality EMG diagnostic report dataset derived from Huashan Hospital Affiliated to Fudan University with high authenticity, accuracy, and authority, which contains a total of 17,250 diagnostic reports from 2006 to 2013, and each data includes:
