@@ -9,7 +9,7 @@ $\bullet$ Basic information of real anonymized patients (age, gender, and height
 
 $\bullet$ EMG tables (EMG and NCV tests) from the real EMG examination in the hospital.
 
-$\bullet$ Diagnosis (\emph{Findings} and \emph{Impression}) personally written by experienced physicians.
+$\bullet$ Diagnosis ***Findings*** and ***Impression*** personally written by experienced physicians.
 
 The full dataset is further proportionally divided into training, validation, and testing set, with data volumes of 13800, 1725, and 1725 respectively, which can effectively support medical data-to-text research.
 
