@@ -3,6 +3,10 @@
 
 ## ETM Dataset
 
+
+<img src="/figure/data_example.jpg" alt="An EMG diagnostic report example in ETM" style="width:40%;" />
+
+
 ETM (Electromyogram Table Mart) is a high quality EMG diagnostic report dataset derived from Huashan Hospital Affiliated to Fudan University with high authenticity, accuracy, and authority, which contains a total of 17,250 diagnostic reports from 2006 to 2013, and each data includes:
 
 $\bullet$ Basic information of real anonymized patients (age, gender, and height).
