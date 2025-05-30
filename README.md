@@ -1,6 +1,6 @@
 # EMGLLM: Data-to-Text Alignment for Electromyogram Diagnosis Generation with Medical Numerical Data Encoding
 
-<img src="/figure/framework.jpg" alt="EMGLLM Framework" style="width:20%;" align="left" />
+<img src="/figure/framework.jpg" alt="EMGLLM Framework" style="width:30%;" align="left" />
 
 Electromyography (EMG) tables play a crucial role in diagnosing muscle and nerve disorders. However, the complex, continuous numerical data in EMG reports pose significant challenges for current Large Language Models (LLMs), which struggle to interpret such structured medical information effectively.
 
