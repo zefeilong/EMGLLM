@@ -3,6 +3,9 @@
 
 ## ETM Dataset
 
+ETM-17k: https://huggingface.co/datasets/fangbingzi/ETM-17k
+
+For the training of language models, you can use ETM-17k-LLM version: https://huggingface.co/datasets/fangbingzi/ETM-17k-LLM
 
 <img src="/figure/data_example.jpg" alt="An EMG diagnostic report example in ETM" style="width:50%;" />
 
@@ -17,6 +20,4 @@ $\bullet$ Diagnosis ***Findings*** and ***Impression*** personally written by ex
 
 The full dataset is further proportionally divided into training, validation, and testing set, with data volumes of 13800, 1725, and 1725 respectively, which can effectively support medical data-to-text research.
 
-ETM-17k: https://huggingface.co/datasets/fangbingzi/ETM-17k
 
-For the training of language models, you can use ETM-17k-LLM version: https://huggingface.co/datasets/fangbingzi/ETM-17k-LLM
