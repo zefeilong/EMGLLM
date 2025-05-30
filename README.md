@@ -1,5 +1,10 @@
 # EMGLLM: Data-to-Text Alignment for Electromyogram Diagnosis Generation with Medical Numerical Data Encoding
 
+Electromyography (EMG) tables play a crucial role in diagnosing muscle and nerve disorders. However, the complex, continuous numerical data in EMG reports pose significant challenges for current Large Language Models (LLMs), which struggle to interpret such structured medical information effectively.
+
+**EMGLLM is a specialized data-to-text model designed to bridge this gap.** It introduces an EMG Alignment Encoder, which simulates how medical professionals compare patient test values with reference ranges, aligning the data into embeddings that reflect a patient's health status more accurately.
+
+To support research and development in this area, we also introduce ETM, a large-scale dataset containing 17,250 real-world EMG cases paired with diagnostic reports. Our experiments show that EMGLLM significantly outperforms baseline models on EMG table interpretation and diagnostic text generation, offering a new paradigm for automatic diagnosis from structured medical data.
 
 ## ETM Dataset
 
