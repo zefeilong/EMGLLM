@@ -47,7 +47,7 @@ class Model(nn.Module):
 
         self.dropout = nn.Dropout(self.attention_dropout).to(self.llama.device)
 
-        # Patch embedding layer for time-series input
+        # Patch embedding layer for continuous data input
         self.patch_embedding1 = PatchEmbedding(
             self.d_model, self.patch_len, self.stride, self.attention_dropout
         ).to(self.llama.device)
@@ -58,7 +58,7 @@ class Model(nn.Module):
         self.num_tokens = 192
         self.mapping_layer = nn.Linear(self.vocab_size, self.num_tokens, dtype=self.llama.dtype).to(self.llama.device)
 
-        # Reprogramming layer to align time-series embeddings with LLM embedding space
+        # Reprogramming layer to align continuous data embeddings with LLM embedding space
         self.reprogramming_layer = ReprogrammingLayer(
             self.d_model, self.n_heads, self.d_ff, self.d_llm, dtype=self.llama.dtype
         ).to(self.llama.device)
@@ -78,13 +78,13 @@ class Model(nn.Module):
         input_ids = self.tokenizer(prompt[0], return_tensors="pt").input_ids.to(self.llama.device)
         input_embeds = self.llama.get_input_embeddings()(input_ids)
 
-        # For each additional segment (time-series + next part of the prompt)
+        # For each additional segment (continuous data + next part of the prompt)
         if len(prompt) > 1:
             for i in range(1, len(prompt)):
                 tag = series[i - 1]["item"]
                 x_enc = torch.tensor([series[i - 1]["tensor"]]).to(self.llama.device).to(torch.float16)
 
-                # Compute patch embeddings from time-series data
+                # Compute patch embeddings from continuous data data
                 enc_out, n_vars = self.patch_embedding1(x_enc)
                 enc_out = self.reprogramming_layer(enc_out, source_embeddings, source_embeddings)
 
@@ -92,7 +92,7 @@ class Model(nn.Module):
                 input_ids = self.tokenizer("\n" + prompt[i], return_tensors="pt").input_ids[:, 2:]
                 prompt_embeds = self.llama.get_input_embeddings()(input_ids.to(self.llama.device))
 
-                # Concatenate embeddings: [previous text][time-series][next text]
+                # Concatenate embeddings: [previous text][continuous data][next text]
                 input_embeds = torch.cat([input_embeds, enc_out, prompt_embeds], dim=1)
 
         # Prepare labels tensor for LLM training (masking all but the target segment)
@@ -131,14 +131,14 @@ class Model(nn.Module):
         input_ids = self.tokenizer(prompt[0], return_tensors="pt").input_ids.to(self.llama.device)
         input_embeds = self.llama.get_input_embeddings()(input_ids)
 
-        # For each additional segment (time-series + next part of the prompt)
+        # For each additional segment (continuous data + next part of the prompt)
         if len(prompt) > 1:
             for i in range(1, len(prompt)):
                 tag = series[i - 1]["item"]
                 x_enc = torch.tensor([series[i - 1]["tensor"]]).to(self.llama.device).to(torch.float16)
                 x_enc = (x_enc - x_enc.mean()) / torch.sqrt(torch.var(x_enc) + 1e-5)
 
-                # Compute patch embeddings from time-series data
+                # Compute patch embeddings from continuous data data
                 enc_out, n_vars = self.patch_embedding1(x_enc)
                 enc_out = self.reprogramming_layer(enc_out, source_embeddings, source_embeddings)
 
@@ -146,7 +146,7 @@ class Model(nn.Module):
                 input_ids = self.tokenizer("\n" + prompt[i], return_tensors="pt").input_ids[:, 2:]
                 prompt_embeds = self.llama.get_input_embeddings()(input_ids.to(self.llama.device))
 
-                # Concatenate embeddings: [previous text][time-series][next text]
+                # Concatenate embeddings: [previous text][continuous data][next text]
                 input_embeds = torch.cat([input_embeds, enc_out, prompt_embeds], dim=1)
 
         # Generate continuation from the LLM
